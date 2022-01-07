@@ -3,11 +3,9 @@
 
 import os
 
-from flask import Flask,request,abort,render_template,send_file,flash
+from flask import Flask,request,abort,render_template,send_file,flash,redirect,url_for
 from werkzeug.utils import secure_filename
 from datetime import datetime
-
-
 
 app=Flask(__name__)
 
@@ -26,7 +24,7 @@ def index():
             
             if os.path.exists(secured_filename):
                 flash(f'File already exists : {secured_filename}')
-                app.logger.log(f'File already exists : {secured_filename}')
+                app.logger.info( f'File already exists : {secured_filename}')
                 return redirect(url_for('.index'))
 
             f.save(secured_filename)
