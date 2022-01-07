@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+        <title>Web Share File</title>
+        <link href="{{ url_for('static',filename='favicon.ico' ) }}" rel="shortcut icon"/>
+        <link href="{{ url_for('static',filename='bootstrap.min.css' ) }}"   rel="stylesheet"/>
+    </head>
+    <body>
+        <div class="container mt-5 ">
+            <div class="row justify-content-center">   
+                <div class="col border p-5">
+                    <h4 class="text-center mb-5">Upload a File!</h4>
+                    <form action="/" method="POST" enctype="multipart/form-data" role="form">
+                        <div class="form-group">
+                            <input type="file" name="upload" id="upload" class="form-control"/>
+                        </div>
+                        <button type="submit" name="submit" class="btn btn-primary float-end mt-5"/>Enviar</button>
+                    </form>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    {% if tbody != []  %}
+                    <table class="table mt-5">
+                        <thead>
+                            <tr>
+                                <th scope="col">File</th>
+                                <th scope="col">Size</th>
+                                <th scope="col">Uploaded</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for row in tbody %}
+                            <tr>
+                                <th scope="row"><a href="/files/{{ row[0]|e }}">{{ row[0]|e }}</a></th>
+                                {% for d in row[1:] %}
+                                    <td>{{ d }}</td>
+                                {% endfor %}
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>    
+                    {% else %}
+                    <p class="text-center mt-5">No file was uploaded yet</p>
+                    {% endif %}
+            </div>
+        </div>
+    </body>
+</html>
