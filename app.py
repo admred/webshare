@@ -49,7 +49,7 @@ def index():
 @app.get('/files/<_file>')
 def sendfile(_file):
 
-    if _file not in  os.listdir(PATH)  or _file[0] == '.' :
+    if _file[0] == '.' or  _file not in  os.listdir(PATH):
         flash('File not found')
         return redirect(url_for('.index'))
     

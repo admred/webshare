@@ -1,6 +1,6 @@
 Fast way to share files over the Web
 
-How run it?
+How do run it?
 
 git clone https://github.com/admred/webshare
 
